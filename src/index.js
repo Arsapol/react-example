@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+// import { configure } from '@testing-library/react';
+
+const liff = window.liff
+
+const init_liff = async () => {
+    await liff.init({ liffId: '1653915952-Yw4P9v6J' })
+    if (!liff.isLoggedIn()) liff.login({ redirectUri: Location.href })
+    const _lineProfile = await liff.getProfile()
+    console.log(`Profile : ${JSON.stringify(_lineProfile)}`)
+}
+
+init_liff()
 
 const Square = (props) => {
     // const [value, setValue] = useState(null)
@@ -26,7 +38,7 @@ const Board = () => {
         //     newSquares[i] = status ? 'X' : 'O'
         //     setSquares(newSquares)
         // }
-        if (squares[i] != null){
+        if (squares[i] != null) {
             return
         }
 
